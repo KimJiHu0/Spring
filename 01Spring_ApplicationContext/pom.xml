@@ -1,0 +1,91 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  
+<!-- 
+	이 pom.xml을 만들기 위해서는
+	내가 만든 Project 우클릭 -> Configure -> Convert to Maven Project를 클릭하면 된다.
+	
+	Maven : Build(이클립스 내에서 run as해주는 것), 배포 관리 tool이다.
+-->
+  
+  
+  <!-- modelVersion은 Maven의 Version을 의미해 -->
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- groupId와 artifactId는 프로젝트의 이름을 의미해 -->
+  <groupId>Spring01_Hello01</groupId>
+  <artifactId>Spring01_Hello01</artifactId>
+  
+  <!-- version은 프로젝트의 version을 의미해 -->
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- build는 Project build와 관련된 setting이야 -->
+  <build>
+  	
+  	<!-- sourceDirectory는 source가 들어갈 위치를 뜻해 -->
+    <sourceDirectory>src</sourceDirectory>
+    <resources>
+      <resource>
+        <directory>src</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    
+    
+    <plugins>
+      <plugin>
+      	<!-- artfactId가 java 1.8로 만들어진 source와 target을 가지고 실행해줘 -->
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <!-- 
+  	dependency(jar) 관리
+  	이거 저장하면 다운받아지는데 이것과 관련된 자료들은 Maven에서 다운로드 받아줘
+  	dependency만 쳐주만 Maven이 알아서 추가해줄거야.
+   -->
+   <dependencies>
+    <!-- Spring-core를 다운받을 수 있는 http경로야 -->
+   	<!-- https://mvnrepository.com/artifact/org.springframework/spring-core -->
+	<dependency>
+	    <groupId>org.springframework</groupId>
+	    <artifactId>spring-core</artifactId>
+	    <version>5.2.8.RELEASE</version>
+	</dependency>
+	
+	<!-- Spring Context를 사용할 수 있게 해주는 http경로야 -->
+	<dependency>
+	  <groupId>org.springframework</groupId>
+	  <artifactId>spring-context</artifactId>
+	  <version>5.2.8.RELEASE</version>
+	</dependency>
+   	
+   </dependencies>
+  
+</project>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

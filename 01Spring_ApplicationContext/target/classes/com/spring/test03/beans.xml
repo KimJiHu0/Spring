@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+	이 xml을 만들기 위해서는 일반xml이 아니라 Spring을 사용해야하기 때문에 만드는 법이 조금 다르다.
+	내가 만든 Project 우클릭 -> New -> Other -> Spring	Bean Configuration File을 만들어야한다.
+	
+	여기서는 Java class, Java Object를 뜻한다 : Bean
+	com.test03.MessageBeanEn이라는 class를 가지고 bean01이라는 객체를 생성한다.
+	com.test03.MessageBeanEn이라는 class를 가지고 bean02이라는 객체를 생성한다.
+	
+	bean Tag에 있는 속성
+	id : 객체를 만들때 붙여지는 이름을 의미한다.
+	class : 어느 경로에 있는 class인지를 지정해준다.
+-->
+<bean id="bean01" class="com.spring.test03.MessageBeanEn"></bean>
+<bean id="bean02" class="com.spring.test03.MessageBeanKo"></bean>
+
+</beans>
