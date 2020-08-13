@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- 이곳에서는 constructor-arg 태그에 index와 value를 사용해서 argument를 입력해 줄 것이다. -->
+
+<!-- 
+	3개의 객체를 생성해줬다.
+	이름은 각각 people1, people2, people3이라는 이름을 가졌다.
+	class의 경로는 com.spring.test02.Address이다.
+	com.spring.test02에 있는 Address.java파일을 의미힌다.
+	그 안에서는 전역변수 3개가 있다.
+	이제 값 3개를 생성한 객체들에 대입해주자.
+	constructor-arg index는 번지수를 의미한다.
+	파라미터의 번지수라고 생각하면 좋을 것 같다.
+	
+	0번지 : name
+	1번지 : addr
+	2번지 : phone
+	
+	0번지에 value를 , 1번지에 value를, 2번지에 value를 넣어준다.
+ -->
+
+<bean id="people1" class="com.spring.test02.Address">
+	<constructor-arg index="0" value="kim"></constructor-arg>
+	<constructor-arg index="1" value="서울"></constructor-arg>
+	<constructor-arg index="2" value="010-0000-0000"></constructor-arg>
+</bean>
+
+<bean id="people2" class="com.spring.test02.Address">
+	<constructor-arg index="0" value="lee"></constructor-arg>
+	<constructor-arg index="1" value="인천"></constructor-arg>
+	<constructor-arg index="2" value="010-1111-1111"></constructor-arg>
+</bean>
+
+<bean id="people3" class="com.spring.test02.Address">
+	<constructor-arg index="0" value="park"></constructor-arg>
+	<constructor-arg index="1" value="부산"></constructor-arg>
+	<constructor-arg index="2" value="010-2222-2222"></constructor-arg>
+</bean>
+
+
+</beans>

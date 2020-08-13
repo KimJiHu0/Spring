@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- MessageBeanImpl furit = new MessageBeanImpl();과 같은 의미이다. -->
+<bean id="fruit" class="com.spring.test01.MessageBeanImpl"></bean>
+
+<!-- DI (Dependency Injection) : 객체간의 결합을 느슨하게하는 Spring의 핵심 기술 -->
+<!-- 의존관계 관리 : Construction(생성자에 값을 주입), Setter(setter에 값을 주입), Field(필드에 값을 주입) -->
+<!-- 첫번째 생성자 aurgument에는 watermelon이라는 값이 들어가고, 두번째 생성자에는 Parameter 3개 받는 생성자를 만들어주는데 -->
+
+<!-- 객체에 파라미터를 넣어주는 방법 -->
+
+
+<!-- 1. -->
+<!-- watermelon이라는 이름으로 객체를 생성하는데 class의 경로는 아래와 간다. -->
+<bean id="watermelon" class="com.spring.test01.MessageBeanImpl">
+	<!-- watermelon이라는 이름을 가진 객체에 설정을 해주는거라고 볼 수 있다. -->
+	<!-- 아래의 두 태그를 보면 이렇게 정의할 수 있다. -->
+	<!-- MessageBeanImpl watermelon = new MessageBeanImpl("WATERMELON", 20000); -->
+	<!-- 그리고 아래의 constructoro-arg라는 태그는 생성한 객체에 Parameter값을 넣어주는 것을 의미한다. -->
+	<constructor-arg>
+		<value>WATERMELON</value>
+	</constructor-arg>
+	
+	<constructor-arg value="20000"></constructor-arg>
+</bean>
+
+
+<!-- 2. -->
+<!-- melon이라는 이름을 가진 객체를 만들고 class의 경로는 아래와 같다. -->
+<bean id="melon" class="com.spring.test01.MessageBeanImpl">
+	<!-- melon이라는 이름을 가진 객체는 class경로에 있는 것이다. -->
+	<!-- Parameter값을 2개 넣는 방법이다. -->
+	<!-- 1번째 index의 위치에 5000이라는 값을 대입한다. -->
+	<!-- 2번째 index의 위치에 참외라는 값을 대입한다. -->
+	<!-- 아래의 명령문의 경우 이렇게 정의할 수 있다. -->
+	<!-- MessageBeanImpl = new MessaheBeanImpl(""); -->
+	<constructor-arg index="1" value="5000"></constructor-arg>
+	<constructor-arg index="0" value="참외"></constructor-arg>
+</bean>
+
+
+</beans>
