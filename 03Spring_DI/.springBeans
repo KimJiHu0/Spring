@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<version>1</version>
+	<pluginVersion><![CDATA[3.9.13.202006180736-RELEASE]]></pluginVersion>
+	<configSuffixes>
+		<configSuffix><![CDATA[xml]]></configSuffix>
+	</configSuffixes>
+	<enableImports><![CDATA[false]]></enableImports>
+	<configs>
+		<config>src/com/test01/applicationcontext.xml</config>
+		<config>src/com/test02/applicationcontext.xml</config>
+		<config>src/com/test03/applicationcontext.xml</config>
+		<config>src/com/test04/applicationcontext.xml</config>
+		<config>src/com/test05/applicationcontext.xml</config>
+		<config>src/com/test07/applicationcontext.xml</config>
+	</configs>
+	<autoconfigs>
+	</autoconfigs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>

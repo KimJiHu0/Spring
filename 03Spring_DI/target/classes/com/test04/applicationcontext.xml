@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!-- 
+	ref라는 뜻은 참조라는 뜻이다.
+	지금까지 우리는 Emp class를 extends해서 사용했기 때문에 타입은 늘 String 혹은 int였기 때문에
+	value를 사용했고,
+	지금은 extends를 하지 않고 전역변수로 Emp class를 썼기 떄문에 위에서 값을 먼저 불러온 후에 그것을 참조하는 한 후에 사용해야한다.
+	
+	객체 생성 : baen
+	
+	객체에 값을 주입 : constructor, property / ref로 참조 혹은 value
+ -->
+<bean id="lee" class="com.test04.Emp">
+	<property name="name" value="이순신"></property>
+	<property name="salary" value="10000000"></property>
+</bean>
+
+<bean id="leess" class="com.test04.Engineer">
+	<constructor-arg name="emp" ref="lee"/>
+	<constructor-arg name="dept" value="기술팀"/>
+</bean>
+
+
+
+<bean id="hong" class="com.test04.Emp">
+	<property name="name" value="홍길동"></property>
+	<property name="salary" value="110000000"></property>
+</bean>
+
+<bean id="honggil" class="com.test04.Developer">
+	<constructor-arg name="emp" ref="hong"/>
+	<constructor-arg name="dept" value="개발팀"/>
+</bean>
+
+</beans>

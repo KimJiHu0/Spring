@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--
+	factory-method : 만들어주는 메소드라는 뜻
+	해당 클래스를 객체화 시킬때 해당 메소드를 통해서 만들어주세요. 라는 뜻이야.
+	싱글톤으로 만들때도 생성자 private해놓고(외부에서 new연산자로 못만들게 만들고)
+	getIntance를 통해서 호출했어.
+	만일 이미 만들어져 있다면 그 주소값을 리턴하게 되어있어.
+ -->
+	<bean id="singleton" class="com.test01.AbstractTest" factory-method="getInstance"></bean>
+
+</beans>

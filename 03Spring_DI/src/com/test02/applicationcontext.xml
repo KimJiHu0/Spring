@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- constructor injection을 이용 -->
+	<bean id="bae" class="com.test02.Emp">
+		<constructor-arg index="0" value="배민경"></constructor-arg>
+		<constructor-arg index="1" value="7500000"></constructor-arg>
+	</bean>
+	
+	<!-- setter injection을 이용 -->
+	<bean id="kim" class="com.test02.Emp">
+		<property name="name" value="김지후"></property>
+		<property name="salary" value="7700000"></property>
+	</bean>
+
+</beans>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- lazy-init = true라는 것은 나중에 생성해준다는 의미.-->
+	<!-- lazy-init이 false인 객체 먼저 생성해준 후 MTest에서 가져온 후에 SamSungTV에 대한 것을 출력해줄 때 생성? -->
+	<!-- 늦게 초기화 된다.bean container가 만들어질 때 객체가 만들어지긴 할거다.-->
+	<!-- 근데 lazy-init=true는 해당 객체를 호출할때까지 생성되지 않을거야. 호출을 하면 그때 객체를 만들어줄거야. -->
+	<!-- 그런데 또 lazy-init을 쓰지 않고 호출을 안해도 객체는 생성이 되는데 붙여주면 호출할때까지 생성 안해. -->
+	<bean id="SamSungTV" class="com.test07.SamSungTV" lazy-init="true"></bean>
+	<bean id="IgTV" class="com.test07.IgTV"></bean>
+
+</beans>

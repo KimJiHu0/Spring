@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 
+
+Emp를 상속받은 Engineer class와 Developer class에는 
+parameter 2개짜리 생성자가 있다. 거기서 2개를 넣어주고
+ -constructor-arg를 사용
+나머지 dept를 setter로 지정해줬기 때문에
+ -setter injection을 사용한다.
+ 
+ -->
+<bean id="bae" class="com.test03.Developer">
+	<constructor-arg name="name" value="배민경"></constructor-arg>
+	<constructor-arg name="salary" value="7000000"></constructor-arg>
+	<property name="dept" value="개발팀"></property>
+</bean>
+
+<bean id="soung" class="com.test03.Engineer">
+	<constructor-arg name="name" value="성현모"></constructor-arg>
+	<constructor-arg name="salary" value="7000000"></constructor-arg>
+	<property name="dept" value="기술팀"></property>
+</bean>
+
+</beans>
+	
