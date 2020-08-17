@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 우선 Food class에 내가 가장 좋아하는 과일, 싫어하는 과일을 넣어서 객체를 생성해주자. -->
+<bean id="favorite" class="com.spring.test02.Food">
+	<constructor-arg name="name" value="좋아하는 과일"></constructor-arg>
+	<constructor-arg name="price" value="5000"></constructor-arg>
+</bean>
+
+<bean id="unfavorite" class="com.spring.test02.Food">
+	<constructor-arg name="name" value="싫어하는 과일"></constructor-arg>
+	<constructor-arg name="price" value="싫어하는 과일"></constructor-arg>
+</bean>
+
+<bean id="choice" class="com.spring.test02.MyFood" autowire="byName"></bean>
+
+<!-- 
+	Autowire 속성
+	1. default : 생성자에 할당할 type이 있는지 확인 후, Constructor
+				없으면  기본 메소드에서 type이 있는지 물어보고 확인하여 탑일거야...
+	2. byName : setter와 같은 이름(id/ name 속성 둘중 하나만 맞으면 된다.)
+	3. byType : setter와 같은 type의 (bean객체를 자동할당.)
+	4. Constructor : 생성자의 파라미터와 같은 type의 같은 이름의 bean을 찾아서 자동 할당(파라미터가 여러개면 다 맞아야함 id,name이 맞아야해) 
+ -->
+
+</beans>

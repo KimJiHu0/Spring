@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- MyClass Class에 bean객체 생성 -->
+	<bean id="myclass" class="com.spring.test01.MyClass"></bean>
+	
+	<!-- java.util.Date에 있는 Class를 사용해서 값을 주입하자. -->
+	<!-- java.util.Date는 1900년도부터 시작하기 때문에 year = 1900부터 시작한다. 그래서 value에 120을 넣게 되면 2020년부터 시작한다. -->
+	<!-- month는 0 : 1월 / 1 : 2월 / 2 : 3월 ... 이기 떄문에 value에 3을 넣어야 4월이 출력이 된다. -->
+	<!-- day에는 14일을 출력해주기 위해 value에 14를 주입해준다. -->
+	<bean id="date" class="java.util.Date">
+		<constructor-arg name="year" value="120"></constructor-arg>
+		<constructor-arg name="month" value="3"></constructor-arg>
+		<constructor-arg name="day" value="14"></constructor-arg>
+	</bean>
+	
+	<!--1. BeanTest Class를 객체서 생성!(기본생성자 출력) -->
+	<bean id="beantest" class="com.spring.test01.BeanTest"></bean>
+	
+	
+	<!-- 2. BeanTest(Date date) 호출하기 -->
+	<bean id="datetest" class="com.spring.test01.BeanTest">
+		<!-- BeanTest(Date date)를 출력하자 -->
+		<!-- 위에서 만든 date를 ref(참조)해서 파라미터에 값을 담아줬다. -->
+		<constructor-arg ref="date"></constructor-arg>
+	</bean>
+		
+	<!-- 3. BeanTest(MyClass myclass)호출 하기 -->
+	<!-- 객체의 이름은 myclasstest / com.spring.test01에 있는 BeanTest class에 있는애야. -->
+	<!-- myclass이름을 가진 변수에 가장 위에서 만든 myclass를 ref할거야. -->
+	<bean id="myclasstest" class="com.spring.test01.BeanTest">
+		<constructor-arg ref="myclass"/>
+	</bean>
+	
+	<!-- 이제 BeanTest에서 Setter만 사용할거야. -->
+	<!-- 그니까 하나의 Class안에 테스트할거야. -->
+	<bean id="beanTest" class="com.spring.test01.BeanTest">
+		<!-- setMyClass(MyClass myclass) 호출하기! -->
+		<property name="myClass" ref="myclass"></property>
+		
+		
+		<!-- setDate(Date date)호출하기! -->
+		<property name="date" ref="date"></property>
+		
+		
+		<!-- setNumber(int sum) 호출하자 -->
+		<!-- setter의 이름은 setNumber -->
+		<property name="number">
+		<!-- value의 type은 short이고, 값은 202야 -->
+			<value type="short">202</value>
+		</property>
+		
+		
+		<!-- setArray(String[] arr)호출 : {배열안에 이름 넣어서.} -->
+		<!-- 배열에는 여러 내부 빈, 참조, 컬렉션, 값이 포함될 수 있어. -->
+		<!-- setter의 이름은 array야 -->
+		<property name="array">
+		<!-- array의 객체생성을 한 후 property는 setter injection이다. -->
+		<!-- array라는 태그 안에 value를 1,2,3,4를 넣어준거다. -->
+			<array>
+				<value>person1</value>
+				<value>person2</value>
+				<value>person3</value>
+				<value>person4</value>
+			</array>
+		</property>
+		
+		<!-- setList<String>에서 호출 -->
+		<property name="list">
+		<!-- list를 객체로 만들어 줄건데 그 값을 주입해야돼 -->
+		<!-- list태그 밑에 value는 list에 값을 하나하나 넣을거라는 의미야. -->
+			<list>
+				<value>봄</value>
+				<value>여름</value>
+				<value>가을</value>
+				<value>겨울</value>
+			</list>
+		</property>
+		
+		<!-- setSet<String> 호출 -->
+		<!-- Set은 java에서도 중복이 되지 않았다. 1,2,3,3,4,5 중에 중복을 제거한 후에 출력이 된다. -->
+		<property name="set">
+		<!-- set이라는 태그 안에 value값 넣어주기. -->
+			<set>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>3</value>
+				<value>4</value>
+			</set>
+		</property>
+		
+		<!-- setMap(Map<String, String> map)호출 -->
+		<!-- 1일 때 봄 / 2일떄 여름 / 3일 때 가을 / 4일 때 겨울 -->
+		<property name="map">
+		<!-- Map 객체이기 때문에 map태그를 사용할 수 있다. -->
+			<map>
+			<!-- enrty는 하나의 {k:v}를 의미한다고 볼 수 있어. -->
+			<!-- map에는 key와 value가 있는데 key값을 지정해주기 위해 "key"태그를 사용했고 value값을 넣어줬고 -->
+			<!-- "value" 태그를 사용해서 봄 이라는 값을 주입해줬어 -->
+				<entry>
+					<key><value>1</value></key>
+					<value>봄</value>
+				</entry>
+				<entry>
+					<key><value>2</value></key>
+					<value>여름</value>
+				</entry>
+				<entry>
+					<key><value>3</value></key>
+					<value>가을</value>
+				</entry>
+				<entry>
+					<key><value>4</value></key>
+					<value>겨울</value>
+				</entry>
+			</map>
+		</property>
+		
+		<!-- setScore(List<Score> list) 호출  / 2개는 innerbean, 1개는 ref사용-->
+		
+		<!-- setter의 이름은 score야. -->
+		<property name="score">
+			<!-- setScore안에는 List가 여러개 들어갈 수 있지만 innerbean(list의 안에서 bean을 작성) 2개 -->
+			<list>
+				<bean id="person1" class="com.spring.test01.Score">
+					<constructor-arg name="name" value="사람1"></constructor-arg>
+					<constructor-arg name="kor" value="54"></constructor-arg>
+					<constructor-arg name="eng" value="36"></constructor-arg>
+					<constructor-arg name="math" value="75"></constructor-arg>
+				</bean>
+				
+				<bean id="person2" class="com.spring.test01.Score">
+					<constructor-arg name="name" value="사람2"></constructor-arg>
+					<constructor-arg name="kor" value="78"></constructor-arg>
+					<constructor-arg name="eng" value="68"></constructor-arg>
+					<constructor-arg name="math" value="37"></constructor-arg>
+				</bean>
+				
+				<!-- score3이라는 객체를 가져와서 쓸거란거야. -->
+				<ref bean="person3"></ref>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="person3" class="com.spring.test01.Score">
+		<constructor-arg name="name" value="사람3"></constructor-arg>
+		<constructor-arg name="kor" value="98"></constructor-arg>
+		<constructor-arg name="eng" value="56"></constructor-arg>
+		<constructor-arg name="math" value="65"></constructor-arg>
+	</bean>
+	
+	
+	
+
+
+</beans>
