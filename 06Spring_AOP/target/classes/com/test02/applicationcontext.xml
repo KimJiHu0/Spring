@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- 1. 객체생성. -->
+	<bean id="woman" class="com.test02.Woman"></bean>
+	<bean id="man" class="com.test02.Man"></bean>
+
+	<!-- Advice(CCC) : 공통 관심사항 -->
+	<bean id="myAdvice" class="com.test02.MyAspect"></bean>
+	
+	<!-- Advisor(Aspect) : Advice + PointCut(잘라놓은 CCC를 어디에 호출할지 정하는)  -->
+	<!-- expression : ${}EL태그 -->
+	<bean id="myAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+		<property name="advice" ref="myAdvice"></property>
+		<property name="expression" value="execution(public * *(..))"/>
+	</bean>
+	
+	<!-- proxy -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"></bean>
+</beans>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:aop="http://www.springframework.org/schema/aop"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+   
+   <aop:aspectj-autoproxy/>
+   
+   <bean id="man" class="com.test03.Man"/>
+   <bean id="woman" class="com.test03.Woman"/>
+   <bean id="myAspect" class="com.test03.MyAspect"/>
+   
+   <aop:config>
+      <aop:aspect ref="myAspect">
+      	 <!-- target을 호출하기전에 before메소드를 -->
+      	 <!-- joinpont애들 중에서 public 메소드 호출할때(return타입 상관x[*], 이름 상관x[*], 파라미터가 0또는 그 이상=없어도된다.[(..)]) -->
+      	 <!-- 
+      	 	<aop:before method="before" pointcut="execution(public * com.test03.Man.classWork(..))"/>
+      	 	위의 구문은 Man class에 classWork를 호출 할 때 CCC(befor)를 연결해주라는 의미인데 
+         	<aop:after method="after" pointcut="execution(public * com.test03.Woman.classWork(..))"/>
+         	com.test03패키지에 Woman class classWork가 호출될 떄 연결해주라는 의미.
+         -->
+         
+         <!-- before메소드는 com.test03.Woman.classWork(JoinPointer : 어떤 위치에서 호출될 때)을 호출하면 나오게 했다.(before메소드만) -->
+         <aop:before method="before" pointcut="execution(public * com.test03.Woman.classWork(..))"/>
+         <!-- target을 호출한 후에 after -->
+         <!-- after메소드는 com.test03.Man.classWork(JoinPointer : 어떤 위치에서 호출될 때)를 호출하면 나오게 했다.(after메소드만) -->
+         <aop:after method="after" pointcut="execution(public * com.test03.Man.classWork(..))"/>
+      </aop:aspect>
+   </aop:config>   
+   
+</beans>
