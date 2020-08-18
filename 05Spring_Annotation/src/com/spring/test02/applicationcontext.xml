@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+
+<!-- 
+	context : WebContent가 context root
+	그래서 우리가 jsp10_MVC를 만들면 localhost:8787/jsp10_MVC가 돼.
+	container : 프함할 때.(server : servlet container)
+	Spring Bean Container : 우리가 지금 쓰고있는 applicationcontext.xml
+	Container : 뭔가가 가지고 있는 애
+	Context : 프로젝트에 뭔가 관련이 있는 애
+ -->
+<!-- base-package : 해당 경로에 annotation을 찾아서 객체를 생성해준다. -->
+<!-- 찾으면서 @Component라는 애가 있나 없나 확인 후 있으면 bean객체 생성. -->
+<context:component-scan base-package="com.spring.test02"></context:component-scan>
+
+</beans>

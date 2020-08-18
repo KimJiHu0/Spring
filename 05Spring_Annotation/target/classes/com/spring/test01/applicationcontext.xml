@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- NickName class를 bean로 만들어주자 -->
+	<bean id="nickname" class="com.spring.test01.NickName"></bean>
+	
+	<!-- MyNickNamePrn class를 객체 선언해주는데 NickName를 전역변수로 받았기 때문에 -->
+	<!-- 그리고 setter로 nickname을 만들었기 때문에 Setter Injection을 이용. -->
+	<bean id="mynickname" class="com.spring.test01.MyNickNamePrn">
+	<!-- setter의 name은  setter에서 앞글자 소문자-->
+		<property name="nickName" ref="nickname"></property>
+	</bean>
+
+</beans>
