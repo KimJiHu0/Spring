@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 1. 객체를 생성한다. -->
+<bean id="woman" class="com.spring.test02.Woman"></bean>
+<bean id="man" class="com.spring.test02.Man"></bean>
+
+<!-- 2. 공통 관심사인 CCC를 생성해준다. -->
+<bean id="myAspect" class="com.spring.test02.MyAspect"></bean>
+
+<!-- Advisor(Aspect) : Advice(Aspect : 코드를 묶어놓은 class) + PointCut(잘라놓은 CCC를 어디에 호출할지 정하는) -->
+<bean id="myAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+	<property name="advice" ref="myAspect"></property>
+	<!-- value값은 PointCut을 의미한다.  -->
+	<!-- 어디에 호출될지 ! : public이고 리턴타입 상관없고[*], 메소드명 상관없고[*], 파라미터의 갯수 상관없다. -->
+	<property name="expression" value="execution(public * *(..))"></property>
+</bean>
+
+<!-- proxy -->
+<!-- 
+	proxy는 공통된 코드(CCC)를 묶어놓은 Advice + 잘라놓은 CCC를 어느 곳에서 호출할지 정해주는 PointCut
+	결국은 proxy는 Advisor이 된다고 볼 수 있다.
+	우리가 target을 호출하려고 하는데 이 떄 proxy가 이 target을 가로채서 자기가 target인것처럼 행동하고
+	자신의 값을 출력한다.
+ -->
+<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+
+</beans>

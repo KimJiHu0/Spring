@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<!-- proxy만들어줘! -->
+<aop:aspectj-autoproxy/>
+
+<!-- 객체를 생성해줬어. -->
+<bean id="man" class="com.spring.test05.Man"></bean>
+<bean id="woman" class="com.spring.test05.Woman"/>
+<bean id="myAspect" class="com.spring.test05.MyAspect"></bean>
+
+
+</beans>

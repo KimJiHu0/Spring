@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<!-- Man, Woman, Aspect 클래스의 bean 객체를 생성해준다. -->
+<bean id="woman" class="com.spring.test03.Woman"></bean>
+<bean id="man" class="com.spring.test03.Man"></bean>
+<bean id="myAspect" class="com.spring.test03.MyAspect"></bean>
+
+<!-- aop의 구성중에 aspect라는 애가 있는데, 얘는 myAspect를 참조할거야. -->
+<aop:config>
+	<aop:aspect ref="myAspect">
+		<!-- 
+			myAspect class중에서 aop:before 태그가 선언이 됐어.
+			이 뜻은 pointcut(어떠한 지점에 무언가 호출될 때 메소드를 호출해주는 것)
+			public이고, 리턴타입은 상관없으며, 메소드이름(경로)이 com.test03.Woman.classWork()애를 호출했을 때
+			before메소드가 호출된애 전에 호출된다. 라는 의미가 된다.
+		 -->
+		<aop:before method="before" pointcut="execution(public * com.test03.Woman.classWork(..))"/>
+		
+		<!-- 
+			MyAspect class중에서 aop:after 태그가 선언이 됐어.
+			얘는 pointcut(어떤 지점에 무언가 호출할 때 메소드를 호풀해주는 애)
+			public이고, 리턴타입 상관없고, 메소드 이름이나 경로가 해당 경로일 때
+			실행해주는데 after메소드가 호출된 후에 호출되는 애.
+		 -->
+		<aop:after method="after" pointcut="execution(public * com.test03.Man.classWork(..))"/>
+	</aop:aspect>
+</aop:config>
+
+</beans>

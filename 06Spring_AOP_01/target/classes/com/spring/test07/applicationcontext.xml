@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 1. target객체가 있어야지 -->
+<!-- MessageBeanImpl class에 setter를 만들어놨기 떄문에 property를 사용할 수 있다 -->
+<bean id="targetBean" class="com.spring.test07.MessageBeanImpl">
+	<property name="name" value="PengSoo"></property>
+</bean>
+
+<!-- 2. advice객체도 필요해.[공통 CCC] -->
+<bean id="loggingAdvice" class="com.spring.test07.LoggingAdvice"></bean>
+
+<!-- 3. advisor(Aspect) = advice + pointcut-->
+<bean id="myAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+	<property name="advice" ref="loggingAdvice"></property>
+	<property name="pointcut">
+		<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
+			<property name="pattern">
+				<value>.*sayHello.*</value>
+			</property>
+		</bean>
+	</property>
+</bean>
+
+<!-- proxy 만들어야댕 -->
+<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+	<property name="target" ref="targetBean"></property>
+	<property name="interceptorNames">
+		<list>
+			<value>myAdvisor</value>
+		</list>
+	</property>
+</bean>
+</beans>

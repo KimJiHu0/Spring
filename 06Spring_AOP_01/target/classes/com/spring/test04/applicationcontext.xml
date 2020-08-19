@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<!-- com.spring.test04 패키지 내에 있는 파일들 중에  @Component annotation이 있으면 객체생성해준다.-->
+<context:component-scan base-package="com.spring.test04"></context:component-scan>
+<!-- proxy를 만들어주는거야. proxy는 target을 중간에 가로채서 내가 target인냥 행동하는거야 -->
+<aop:aspectj-autoproxy/>
+
+</beans>
