@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 모든 다른 웹 컴퍼넌트 리소스(자원)를 공유한다 -->
+	<!-- 여기에 써주는애들은 우리가 지금 만드는 프로젝트 전체에서 공유되는 애야. -->
+	<!-- AOP에 관련되거나 DB랑 관련된 트랜잭션에 관련된거 -->
+</beans>
