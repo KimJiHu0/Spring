@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 여기는 프로젝트 전체에서 공유되는 파라미터를 설정해줄 수 있는 곳이야. -->
+	<!-- AOP에 관련되거나, DB 혹은 트랜잭션에 관련된 애들을 설정할 수 있어. -->
+	
+</beans>
