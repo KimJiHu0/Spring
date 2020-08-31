@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- hello : web.xml에서 servlet-name 에서 왔어. 그때 적은애랑 동일하게 만들어줘야돼. -->
+	
+	<!-- 해당 서블릿 내에서 사용될 설정 -->
+	<context:component-scan base-package="com.hello.mvc"></context:component-scan>
+	
+	<!-- @controller, @service, @repoissty 을 객체화 -->
+	<mvc:annotation-driven/>
+	
+
+</beans>

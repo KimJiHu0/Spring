@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" version="4.0">
+  <display-name>Spring07_HelloMVC</display-name>
+  
+
+	<!-- TODO : 02.listener -->
+	<!-- 어떤 XML을 호출해줘야하는지 찾아서 연결해줄건지 -->
+	<!-- 지금 들어온 요청을 -->
+	<!-- /WEB-INF/applicationContext.xml랑 org.springframework.web.servlet.DispatcherServlet 중에서 뭘 연결해줄건지 찾아줘. -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- context전체(해당 project전체, 해당 WebApplication 전체)에서 사용할 수 있는 파라미터를 의미한다. -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/applicationContext.xml</param-value>
+	</context-param>
+	
+	<!-- TODO : 03.DispatcherServlet (hello-servlet) -->
+	<servlet>
+		<servlet-name>hello</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	</servlet>
+	
+	
+	<servlet-mapping>
+	<!-- /*.do 하면 에러나 -->
+		<servlet-name>hello</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+</web-app>
