@@ -1,0 +1,28 @@
+SpringMVC03
+
+1. pom.xml : 
+ojdbc6.jar : 붙여 넣을거야. 오라클에서 얘를 막아서 붙일때마다 좀 고생해야돼.
+			 SearchMaven에 들어가서 ojdbc6.jar를 찾아서 pom.xml에 추가해줘.
+mybatis : 마이바티스 추가해야돼.
+mybatis-spring : 얘도 추가해줘야돼
+DBCP : DB랑 SERVLET를 연결해주는 Connection객체.
+	   datasources를 가지고 db랑 프로젝트 연결해주는 connection 객체가 만들어질건데 이 객체들을 관리해주는 애들
+spring-orm : db와 객체를 연결해줄거야.
+
+
+2. web.xml : encodingFilter를 해줘야돼
+
+3. test.sql파일 : /web-inf/ spring / sqls(folder) / test.sql 밑에다 만들거야.
+
+4. DTO, DAO , BIZ, CONTROLLER 만들어
+BoardDto, BoardDao(BoardDaoImpl), BoardBiz(BoardBizImpl), HomeController
+
+5. mapper.xml만들거야~ (src/main/resources/mybatis/mapper.xml)
+
+6. db.properties (src/main/resources/mybatis/db.properties) 만들거야.
+
+7. config.xml (/WEB-INF/spring/sqls/config.xml)
+
+8. applicationContext.xml 작성.
+
+9. 

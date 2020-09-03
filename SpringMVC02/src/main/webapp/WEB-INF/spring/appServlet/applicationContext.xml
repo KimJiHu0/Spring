@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 프로젝트 전체에서 설정해줄 값들을 쓸 수 있는 곳이기 때문에 여기서 db설정 혹은 트랜젝션 해줄거야. -->
+	
+	<!-- db.properties -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!-- 원래 location으로 잡아주고 어디있는지만 잡아주면되는데 -->
+		<!-- locations라고 지정해놓고 여러개의 db를 연결할 수 있는데 거기서 하나만 가져오겠다. -->
+		<!-- 원래 db를 여러개 연결할 수 있는데 해당 properties를 여러개 만들고 list로 담아서 -->
+		<!-- 원하는것만 가져다가 쓸 수 있게 만들어줘. -->
+		<property name="locations">
+			<list>
+				<!-- db.properties 설정 가져오기. -->
+				<value>classpath:mybatis/db.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<!-- dataSource : connection객체 만들어주는애. -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<!-- Mybaits --> <!-- SQLSessionFactory객체까지만 만들어졌음 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="WEB-INF/spring/sqls/config.xml"></property>
+	</bean>
+	
+	<!-- Mybatis Template --> <!-- Template를 만들어서 위에서 만든 SqlSession 객체와 연결 -->
+	<!-- opensession. close 이런거 얘가 다 해줄거야 -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+	
+</beans>
