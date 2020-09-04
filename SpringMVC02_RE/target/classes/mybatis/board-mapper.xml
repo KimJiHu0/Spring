@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mvc.upgrade.myboard">
+
+
+	<!-- selectList해주는 mapper -->
+	<select id="selectList" resultType="BoardDto">
+		SELECT MYNO, MYNAME, MYTITLE, MYCONTENT, MYDATE FROM MYBOARD
+		ORDER BY MYNO DESC
+	</select>
+	
+	<!-- insert해주는 mapper -->
+	<insert id="insertList" parameterType="BoardDto">
+		INSERT INTO MYBOARD VALUES(MYNOSEQ.NEXTVAL, #{myname}, #{mytitle}, #{mycontent}, SYSDATE)
+	</insert>
+	
+	<!-- detail 출력해주는 mapper -->
+	<select id="selectOne" parameterType="int" resultType="BoardDto">
+		SELECT MYNO, MYNAME, MYTITLE, MYCONTENT, MYDATE FROM MYBOARD
+		WHERE MYNO = #{myno}
+	</select>
+	
+	<!-- update해주는 mapper -->
+	<update id="updateList" parameterType="BoardDto">
+		UPDATE MYBOARD SET MYTITLE = #{mytitle}, MYCONTENT = #{mycontent} WHERE MYNO = #{myno}
+	</update>
+	
+	<!-- delete해주는 mapper -->
+	<delete id="deleteList" parameterType="int">
+		DELETE FROM MYBOARD WHERE MYNO = #{myno}
+	</delete>
+
+</mapper>

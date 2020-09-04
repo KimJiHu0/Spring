@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<!-- type에 적혀있는 해당 경로에 있는 BoardDto를 BoardDto라는 이름으로 쓸거야. mapper에서.-->
+	<typeAliases>
+		<typeAlias type="com.mvc.upgrade.model.dto.BoardDto" alias="BoardDto"/>
+	</typeAliases>
+
+	<!-- mybatis 폴더 밑에있는 board-mapper.xml을 연결! -->
+	<mappers>
+		<mapper resource="/mybatis/board-mapper.xml"/>
+	</mappers>
+
+</configuration>

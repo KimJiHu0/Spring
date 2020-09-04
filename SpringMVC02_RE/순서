@@ -1,0 +1,17 @@
+SpringMVC03
+
+1. pom.xml을 건들거야. ojdbc6.jar / mybatis , mybatis-spring / commons-dbcp / spring-orm 을 추가해줘야돼.
+
+2. web.xml
+
+3. myboard.sql (WEB-INF/spring/sqls/myboard.sql)
+
+4. BoardDto, BoardDao(Impl), BoardBiz(impl), BoardController
+
+5. mybatis 연결해야돼 board-mpaaer.xml (src/main/resources/mybatis/board-mapper.xml)
+
+6. db.properties (src/main/resources/mybatis/db.properties)
+
+7. config.xml (WEB-INF/spring/sqls/config.xml)
+
+8. applicationContext.xml
