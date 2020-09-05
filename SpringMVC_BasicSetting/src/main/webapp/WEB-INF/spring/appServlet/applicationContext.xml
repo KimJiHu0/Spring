@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- project(Context전체, application 전체. 즉, 현재 project내에서 어디든지 공유되는 설정.) -->
+		
+	<!-- db.properties 설정해주기. -->
+	<!-- location , locations가 존재 -->
+	<!-- location : db연결이 하나밖에 되어있지 않을 때  -->
+	<!-- locations : db연결이 하나 이상으로 배열에 담겨져 있을 때 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath.mybatis/db.properties"></property>
+	</bean>
+	
+	<!-- dataSource Setting -->
+	<!-- Connection객체이다. -->
+	<!-- db.properties에서 작성한 것처럼? -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<!-- mybatis Setting -->
+	<!-- 해당 dataSource로 mybatis 설정을 해준다. -->
+	<!-- 설정을 하려면 sqlSession이 필요하다. sqlSession은 sqlSessionFactory가 필요해서 걔를 만들어준다. -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="WEB-INF/spring/sqls/config.xml"></property>
+	</bean>
+	
+	<!-- mybatis Template Setting -->
+	<!-- mybatis에서 select, update, insert, delete 등등 해주는데 openSession() / close() 등 공통적으로 들어가는 부분을 -->
+	<!-- 알아서 해주도록 만들어주는 것이다. -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+		
+</beans>
