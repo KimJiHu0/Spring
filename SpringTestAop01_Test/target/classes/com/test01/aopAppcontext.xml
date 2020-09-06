@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+<bean id="person01" class="com.test01.Person"></bean>
+
+<bean id="person02" class="com.test01.Person"></bean>
+
+<bean id="myAdvice" class="com.test01.MyAdvice"></bean>
+
+<aop:config>
+	<!-- 공통된 코드들을 묶어놓은 ccc를 설정해주는 태그 -->
+	<aop:aspect ref="myAdvice">
+		<!-- 
+		잘라진 ccc를 어느 위치에 붙일지 설정해주는 것,
+		접근제한자 : public
+		리턴타입 : 상관없음
+		메소드이름 : sayName()
+		파라미터 : 갯수 상관없음
+		위와 같은 메소드가 실행되는 곳이 pointcut
+		ID : sayNamePointcut
+		 -->
+		<aop:pointcut expression="execution(public * sayName(. . ))" id="sayNamePointcut"/>
+		
+		<!-- beforeSaying이라는 메소드가 실행되면 pointcut붙여준다? -->
+		<aop:before method="beforeSaying" pointcut-ref="sayNamePointcut"/>
+		
+		<!-- afterSaying이라는 메소드가 실행되면 pointcut를 붙여준다? -->
+		<aop:after method="afterSaying" pointcut-ref="sayNamePointcut"/>
+		
+		<!-- afterReturnSaying 메소드가 실행되면 pointcut을 붙여준다? -->
+		<aop:after-returning method="afterReturnSaying" pointcut-ref="sayNamePointcut"/>
+	</aop:aspect>
+</aop:config>
+</beans>
