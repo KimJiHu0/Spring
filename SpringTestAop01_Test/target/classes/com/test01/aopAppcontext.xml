@@ -28,6 +28,10 @@
 		위와 같은 메소드가 실행되는 곳이 pointcut
 		ID : sayNamePointcut
 		 -->
+		 
+		 <!-- sayName 메소드가 실행되기 전에 beforeSaying 호출 -->
+		 <!-- sayJob 메소드가 실행된 후에 afterSaying 호출 -->
+		 <!-- sayJob이 예외없이 잘 출력됐으면 afterReturning 호출 -->
 		<aop:pointcut expression="execution(public * sayName(. . ))" id="sayNamePointcut"/>
 		<aop:pointcut expression="execution(public * sayJob(. . ))" id="sayJobPointcut"/>
 		
