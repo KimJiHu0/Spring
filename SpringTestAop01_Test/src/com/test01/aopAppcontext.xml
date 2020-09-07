@@ -33,13 +33,12 @@
 		 <!-- sayJob 메소드가 실행된 후에 afterSaying 호출 -->
 		 <!-- sayJob이 예외없이 잘 출력됐으면 afterReturning 호출 -->
 		<aop:pointcut expression="execution(public * sayName(. . ))" id="sayNamePointcut"/>
-		<aop:pointcut expression="execution(public * sayJob(. . ))" id="sayJobPointcut"/>
 		
 		<aop:before method="beforeSaying" pointcut-ref="sayNamePointcut"/>
 		
-		<aop:after method="afterSaying" pointcut-ref="sayJobPointcut"/>
+		<aop:after method="afterSaying" pointcut-ref="sayNamePointcut"/>
 		
-		<aop:after-returning method="afterReturnSaying" pointcut-ref="sayJobPointcut"/>
+		<aop:after-returning method="afterReturnSaying" pointcut-ref="sayNamePointcut"/>
 	</aop:aspect>
 </aop:config>
 </beans>

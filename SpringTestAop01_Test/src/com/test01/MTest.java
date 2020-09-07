@@ -18,13 +18,17 @@ public class MTest {
 		// "이름이 멋지시네요" 출력 후에 afterReturnSaying(after이 예외없이 호출되면 출력)이 출력되어서
 		// "직업이 무엇입니까?" 출력 후에 syso문 print
 		// 결과 : "이름이 멋지시네요" "직입이 무엇입니까?" "저의 직업은 개발자 입니다."
-		System.out.println(person01.sayName("뽀로로"));
-		System.out.println(person01.sayJob("개발자"));
+		//System.out.println(person01.sayName("뽀로로"));
+		//System.out.println(person01.sayJob("개발자"));
+		person01.sayName("뽀로로");
+		person01.sayJob("개발자");
 		
 		System.out.println("------");
 		
 		Human person02 = factory.getBean("person02",Human.class);
-		System.out.println(person02.sayName("둘리"));
-		System.out.println(person02.sayJob("개그맨"));
+		//System.out.println(person02.sayName("둘리"));
+		//System.out.println(person02.sayJob("개그맨"));
+		person02.sayName("둘리");
+		person02.sayJob("개그맨");
 	}
 }
