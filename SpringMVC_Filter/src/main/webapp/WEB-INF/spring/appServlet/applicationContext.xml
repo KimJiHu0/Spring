@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- project 전체에서 공유되는 설정 -->
+	
+	<!-- db.properties 설정 -->
+	<!-- location, locations 존재 -->
+	<!-- location : db연결이 하나밖에 되어있지 않을 때 -->
+	<!-- locations : db연결이 두개 이상으로 되어있을 때 -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:mybatis/db.properties"></property>
+	</bean>
+	
+	<!-- dataSource Setting -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+	</bean>
+	
+	<!-- mybatis Setting -->
+	<!-- dataSource로 Setting을 해주는데 sqlSession이 필요. 얘를 만들려면 sqlSessionFactory필요. -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="configLocation" value="WEB-INF/spring/sqls/config.xml"></property>
+	</bean>
+	
+	<!-- mybatis Template : SQL문들 외에 공통된 부분을 만들어 준다. -->
+	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSession"></constructor-arg>
+	</bean>
+</beans>
