@@ -1,0 +1,26 @@
+[ SpringMVC03_02 Spring ] Setting Order
+
+1. pom.xml
+	add ojdbc6,
+	add dbcp(commons),
+	add mybatis,
+	add mybatis-spring,
+	add spring-orm
+	
+2. web.xml
+	encodingFilter Setting
+	
+3. myboard.sql (경로 : WEB-INF/spring/sqls/myboard.sql)
+
+4. BoardDto, BoardDao(Impl), BoardBiz(Impl), Controller (경로 : src/main/java)
+
+5. mybaits setting. board-mapper.xml (src/main/resources/mybaits/board-mapper.xml)
+
+6. db.properties (경로 : src/main/resources/mybaits/db.properties)
+
+7. config.xml (경로 : src/main/resources/WEB-INF/spring/sqls/config.xml)
+
+8. applicationContext.xml setting
+
+[ Filter ]
+9. LogFilter class를 추가한다.(com.mvc.spring.common.filter)에 LogFilter class를 추가해주는데 javax.servlet.Filter를 import 한다.
