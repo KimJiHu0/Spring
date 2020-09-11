@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+
+	<!-- type안에 있는 경로를 찾아 BoardDto를 찾은 후 별칭을 BoardDto라고 붙여준다. -->
+	<typeAliases>
+		<typeAlias type="com.mvc.spring.model.dto.BoardDto" alias="BoardDto"/>
+		<typeAlias type="com.mvc.spring.model.dto.MemberDto" alias="MemberDto"/>
+	</typeAliases>
+	
+	<!-- mybatis밑에 board-mapper.xml을 연결 -->
+	<mappers>
+		<mapper resource="/mybatis/board-mapper.xml"/>
+		<mapper resource="/mybatis/member-mapper.xml"/>
+	</mappers>
+
+</configuration>
