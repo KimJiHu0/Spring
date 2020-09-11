@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<!-- DispatcherServlet -->
+	<!-- request들어온 애가 어떤 Controller를 원하는지 찾아서 연결해준다. -->
+	
+	<!-- Spring project 안에있는 @Controller, @Service, @Repository를 찾아서 Annotation을 처리해줘 -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 어떤 view를 보여줄지 제어해주는 ViewResolver -->
+	<!-- prefix, suffix는 Controller에서 return할 때 원하는 jsp이름을 작성한 거에 앞뒤에 경로를 붙여준다. -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- @Component, @Autowried 등등을 만들어 줄건데 com.mvc.spring밑에있는 애들을 다 만들어줄ㄴ다. -->
+	<context:component-scan base-package="com.mvc.spring" />
+	
+	
+	<!-- Interceptor Setting -->
+	<interceptors>
+		<interceptor>
+			<!-- 모든 곳에서 적용하게 만들어줄 path -->
+			<mapping path="/**"/>
+			<beans:bean class="com.mvc.spring.common.interceptor.LoginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- Transaction -->
+	<!-- 트랜잭션이라고 의미하는 annotation들을 모두 생성해준다. -->
+	<tx:annotation-driven/>
+	
+</beans:beans>
