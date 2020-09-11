@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<!-- 비밀버호 암호화를 위해서 pom.xml으로 붙여준 spring-security-web을 생성해주기 위한 xml -->
+	<!-- 이렇게 설정 후에는 web.xml에서 이 xml을 등록해주어야한다. -->
+	<bean id="bcryptPasswordEncoding" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+
+</beans>
