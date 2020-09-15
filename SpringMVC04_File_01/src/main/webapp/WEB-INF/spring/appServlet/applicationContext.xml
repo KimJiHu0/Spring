@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- fileupload를 위한 bean객체 생성 -->
+	<!-- fileupload의 size와 enncoding을 설정 -->
+	
+	
+	<!-- 
+		multipartResolver :
+		파일을 업로드할 때 잠깐 파일을 가지고 있는 애.
+		들어갈 수 있는 최대 크기인 maxUploadSize
+		기본 인코딩 defaultEncoding을 설정
+	 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
+</beans>
