@@ -1,0 +1,15 @@
+1. web.xml : 현재 2.5 version이다. Deployment Descriptor 이 web.xml 별명 / 여기서 2.5에서 4.0으로
+
+2. pom.xml : 
+	* java : 1.6 -> 1.8
+	* springframework : 3.1.1 -> x.x.x (5.2.9)
+	* servlet : servlet-api 2.5 -> javax.servlet-api 4.0.1
+	* jsp-api 2.1 -> javax.servlet.jsp-api 2.3.3
+	* maven-compiler-plugin : source, target 1.6 -> 1.8
+	
+3. project facets : 프로젝트 우클릭 properties -> project facets 에서
+	java와 webproject의 버전을 1.8과 4.0으로 버전 업
+	dynamic web module : 2.5 -> 4.0
+	java 1.6 -> 1.8
+
+4. Maven Update 하면 끝
