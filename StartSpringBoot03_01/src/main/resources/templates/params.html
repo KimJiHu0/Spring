@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>Params</h1>
+	
+	
+	<!-- 이전페이지인 index.html에서 parameter로 id값을 parameter로 보내줬다. -->
+	<!-- 이를 html에서 출력하는 두가지 방법 -->
+	<h1 th:text="|Hello, ${param.id}|">Hello, Parameter id</h1>
+	<h1 th:text="|Hello, ${#httpServletRequest.getParameter('id')} |">Hello, Parameter id</h1>
+	
+	
+	<!-- Controller에서 Session에 pw라는 이름으로 qclass라는 값을 담았다. -->
+	<!-- 이를 html에서 출력하는 3가지 방법 -->
+	<h2 th:text="|Hello, ${session.pw}|">Hello, Session pw</h2>
+	<h2 th:text="|Hello, ${session['pw']}|">Hello, Session pw</h2>
+	<h2 th:text="|Hello, ${#session.getAttribute('pw')}|">Hello, Session pw</h2>
+	
+	<!-- Controller에서 model객체에 dto라는 이름으로 Spring과 4를 보냈다. -->
+	<h3 th:text="${dto.subject}">Hello, Subject</h3>
+	<h3 th:text="${dto.seq}">Hello, Seq</h3>
+
+</body>
+</html>

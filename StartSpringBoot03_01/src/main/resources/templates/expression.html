@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		Controller에서 Expression.html로 보내는 값들 
+		
+		name이라는 이름으로 Thymeleaf라는 값을
+		하나의 dto에 subject라는 이름으로 "java", seq라는 이름으로 1
+		
+		list로 보냈는데 하나의 dto에는 subject : DataBase / seq : 2 || subject : jsp/servlet / seq : 3
+		
+	 -->
+
+	<h1>Expression</h1>
+	
+	<p th:text="|Hello, ${name}|">Hello, $name</p>
+	<p th:text="${dto.subject}">dto.subject</p>
+	
+	<!-- 여러개의 값을 사용할 때 object -->
+	<div th:object="${dto}">
+		<!-- dto 객체 안에 있는 애 가져와서 뿔려줄 수 있음. 대신 *{}는 object 안에서 -->
+		<p th:text="*{subject}">subject</p>
+	</div>
+	
+	<br/><br/><br/>
+	
+	<table>
+		<tr>
+			<th>SUBJECT</th>
+			<th>SEQ</th>
+		</tr>
+		<!-- for문을 돌릴건데 dto:${list라는 뜻은 -->
+		<!-- jstl, c태그로 치면 items가 ${list}이고 var이 dto이다. -->
+		<!-- 결론 : dto라는 이름으로 ${list}를 돌릴거다. -->
+		<!-- list에는 2개의 dto가 담겨있기 때문에 2개의 tr이 생긴다. -->
+		<tr th:each="dto:${list}">
+			<td th:text="${dto.subject}">list안에 dto안에 subject들</td>
+			<td th:text="${dto.seq}">list안에 dto안에 seq들</td>
+		</tr>
+	</table>
+	
+	<br/><br/><br/>
+	
+	<table>
+		<tr>
+			<th>SUBJECT</th>
+		</tr>
+		<!-- dto라는 이름으로 list에 있는거 하나하나 담아서 출력해줄거야. -->
+		<tr th:each="dto:${list}">
+			<!-- dto를 object로 지정 -->
+			<td th:object="${dto}">
+				<!-- 선택된 object 안에서만 사용이 가능한 *{} -->
+				<!-- object안에서 subject와 seq를 골라온다. -->
+				<span th:text="*{subject}"></span>
+				<span th:text="*{seq}"></span>
+			</td>
+		</tr>
+	</table>
+	
+	<br/><br/><br/>
+	
+	<table>
+		<!-- iflist != null 과 같은 의미. -->
+		<!-- iflist가 null이 아니라면 -->
+		<tr th:if="${iflist} ne null">
+			<td>
+				iflist가 null이 아닙니다.
+			</td>
+		</tr>
+		<!-- unless : 이 조건이 false라면 -->
+		<!-- iflist가 null이 아닌게 아니라면 : iflist가 null이라면 -->
+		<tr th:unless="${iflist} ne null">
+			<td>
+				iflist가 null입니다.
+			</td>
+		</tr>
+	</table>
+	
+	<br/><br/><br/>
+	
+	<!-- num은 시퀀스 1부터 3까지를 담았음 -->
+	<div th:each="num:${#numbers.sequence(1, 3)}">
+		<th:block th:switch="${num}">
+			<p th:case="1" th:text="|this is ${num}|"></p>
+			<p th:case="2" th:text="|second id ${num}|"></p>
+			<p th:case="3" th:text="|this is ${num}|"></p>
+		</th:block>
+	</div>
+	
+	<br/><br/><br/>
+	
+	<!-- html(view)로 바로 보낼 수 있고 -->
+	<a th:href="@{index.html}">index</a>
+	<!-- 요청값을 보내서 view를 이동할 수 있다. -->
+	<a th:href="@{util}">utility</a>
+
+</body>
+</html>

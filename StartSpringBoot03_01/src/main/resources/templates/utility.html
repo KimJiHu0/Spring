@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!-- 이거 써야 thymeleaf 쓸 수 있음 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Utility</h1>
+	
+	<!-- 
+		p태그 안에 글자들은 더미데이터.
+		util가져올떄 #으로 가져오기
+	 -->
+	<p th:text="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd HH:mm')}">#dates object</p>
+	<p th:text="${#numbers.formatInteger(3000.1234, 4)}">#number object</p>
+	<p th:text="${#strings.toUpperCase('hello, qclass')}">#string object</p>
+	
+	<a href="/">index</a>
+</body>
+</html>
