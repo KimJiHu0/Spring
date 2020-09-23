@@ -1,0 +1,9 @@
+h1{
+	text-align : center;
+	background-color : black;
+	color : white;
+}
+
+table > th, td{
+	text-align : center;
+}
