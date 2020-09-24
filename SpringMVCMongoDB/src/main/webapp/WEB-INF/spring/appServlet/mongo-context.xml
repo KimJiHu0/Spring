@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- MongoClient 만들기 -->
+	<bean id="mongo" class="com.mongodb.MongoClient">
+		<constructor-arg name="host" value="127.0.0.1"/>
+		<constructor-arg name="port" value="27017"/>
+	</bean>
+	
+	<!-- Template -->
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<!-- 위에서 만든 MongoClient 연결 -->
+		<constructor-arg ref="mongo"></constructor-arg>
+		<!-- 우리가 사용한 db이름을 가지고 온다. -->
+		<constructor-arg name="databaseName" value="test"></constructor-arg>
+	</bean>
+
+</beans>
