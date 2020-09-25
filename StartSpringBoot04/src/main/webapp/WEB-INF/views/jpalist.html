@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>List</h1>
+	
+	<div>
+		<table>
+		<colgroup>
+			<col width="50"/>
+			<col width="100"/>
+			<col width="300"/>
+			<col width="100"/>
+		</colgroup>
+			<tr>
+				<th>NO</th>
+				<th>NAME</th>
+				<th>TITLE</th>
+				<th>DATE</th>
+			</tr>
+			<!-- list의 size가 0일때 실행 -->
+			<tr th:if="${list.size()} == 0">
+				<!-- 이거 안됐음; -->
+				<td colspan="4" align="center">작성된 글이 없습니다.</td>
+			</tr>
+			<!-- list의 size가 0이 인게 아닐 때 : list의 size가 0이 아닐 때 -->
+			<tr th:unless="${list.size()} == 0" th:each="dto:${list}">
+				<td th:text="${dto.myno}">myno</td>
+				<td th:text="${dto.myname}">myname</td>
+				<!-- @는 변수 파라미터를 보낼때 혹은 상대경로 url도 가능하다. -->
+				<td><a th:href="|@{detail}?myno=${dto.myno}|" th:text="${dto.mytitle}">mytitle</a></td>
+				<td th:text="${dto.mydate}">mydate</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<input type="button" th:value="글작성" onclick="location.href='insertform'"/>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</body>
+</html>

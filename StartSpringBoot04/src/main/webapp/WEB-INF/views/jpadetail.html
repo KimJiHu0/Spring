@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>DetailForm</h1>
+	<table>
+		<tr>
+			<th>NAME</th>
+			<td th:text="${dto.myname}">이름넣기</td>
+		</tr>
+		<tr>
+			<th>TITLE</th>
+			<td th:text="${dto.mytitle}">제목넣기</td>
+		</tr>
+		<tr>
+			<th>CONTENT</th>
+			<td>
+				<textarea rows="10" cols="60" readonly="readonly" th:text="${dto.mycontent}"></textarea>
+			</td>
+		</tr>
+		<tr>
+			<th>DATE</th>
+			<td th:text="${dto.mydate}"></td>
+		</tr>
+		<tr>
+			<td colspan="4">
+				<input type="button" value="뒤로" th:onclick="location.href='list'"/>
+				<input type="button" value="수정" th:onclick="|location.href='updateform?myno=${dto.myno}'|"/>
+				<input type="button" value="삭제" th:onclick="|location.href='delete?myno=${dto.myno}'|"/>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>
